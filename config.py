@@ -1,4 +1,4 @@
-# config.py - Complete version with all required variables
+# config.py - Complete version with ALL required variables
 
 import os
 import logging
@@ -24,11 +24,18 @@ DB_NAME = os.environ.get("DATABASE_NAME", "filesharingbot")
 # Auto Delete Settings
 AUTO_DELETE_TIME = int(os.environ.get("AUTO_DELETE_TIME", "0"))
 AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your file will be deleted in {time} seconds")
+AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "This file will be deleted automatically")
 
 # Messages
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}!\n\nI can store files and give you a shareable link.")
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Please join the channel first!")
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", "")
+
+# Media
+START_PIC = os.environ.get("START_PIC", "")
+
+# Features
+JOIN_REQUEST_ENABLE = os.environ.get("JOIN_REQUEST_ENABLE", "False").lower() == "true"
 
 # Settings
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
