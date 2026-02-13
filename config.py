@@ -1,4 +1,4 @@
-# config.py - Modified to work WITHOUT MongoDB
+# config.py - Complete version with all required variables
 
 import os
 import logging
@@ -15,21 +15,27 @@ FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "0")
 
 # Owner/Admin
 OWNER_ID = int(os.environ.get("OWNER_ID", "0"))
+ADMINS = [OWNER_ID]
 
 # Database - OPTIONAL (works without MongoDB)
 DB_URI = os.environ.get("DATABASE_URI", "")
 DB_NAME = os.environ.get("DATABASE_NAME", "filesharingbot")
 
-# Other settings
-TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
+# Auto Delete Settings
+AUTO_DELETE_TIME = int(os.environ.get("AUTO_DELETE_TIME", "0"))
+AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your file will be deleted in {time} seconds")
+
+# Messages
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}!\n\nI can store files and give you a shareable link.")
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Please join the channel first!")
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", "")
+
+# Settings
+TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 PROTECT_CONTENT = os.environ.get("PROTECT_CONTENT", "False").lower() == "true"
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", "False").lower() == "true"
-ADMINS = [OWNER_ID]
 
-# Port for web server (Railway auto-assigns)
+# Port for web server
 PORT = int(os.environ.get("PORT", "8080"))
 
 # Logging
