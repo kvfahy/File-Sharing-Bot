@@ -1,28 +1,25 @@
-#(©)CodeXBotz
+# database/database.py - Modified to work WITHOUT MongoDB
 
-import pymongo, os
-from config import DB_URI, DB_NAME
+import os
 
-dbclient = pymongo.MongoClient(DB_URI)
-database = dbclient[DB_NAME]
-user_data = database['users']
+# Dummy database functions that do nothing
+# This allows the bot to run without MongoDB
 
-async def present_user(user_id : int):
-    found = user_data.find_one({'_id': user_id})
-    return bool(found)
+def present_user(user_id: int):
+    """Check if user exists - always return False (no database)"""
+    return False
 
 async def add_user(user_id: int):
-    user_data.insert_one({'_id': user_id})
-    return
+    """Add user to database - do nothing (no database)"""
+    return True
 
 async def full_userbase():
-    user_docs = user_data.find()
-    user_ids = []
-    for doc in user_docs:
-        user_ids.append(doc['_id'])
-        
-    return user_ids
+    """Get all users - return empty list (no database)"""
+    return []
 
 async def del_user(user_id: int):
-    user_data.delete_one({'_id': user_id})
-    return
+    """Delete user - do nothing (no database)"""
+    return True
+
+# Database is disabled - all functions return dummy values
+print("INFO: Running in NO-DATABASE mode")
